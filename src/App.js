@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Pokemon from './components/Pokemon';
 
 const App = () => {
     const [pokemons, setPokemons] = useState([]);
@@ -30,16 +31,24 @@ const App = () => {
 
     useEffect(() => {
         console.log(pokemons);
-      }, [pokemons]);
+      }, [pokemons]); 
 
  return (
-  <div className='app-container'>
+  <div className='app-contaner'>
     <h1>Pokemon Collection!</h1>
-    <div className='pokeman-container'>
+    <div className='pokemon-container'>
         <div className='all-container'>
-
+            {pokemons.map((e, index)=> 
+            <Pokemon 
+            id={e.id}
+            name={e.name}
+            image={e.sprites.other.dream_world.front_default}
+            type={e.types[0].type.name}
+            key={index}
+            />
+           )}
             </div>
-        <button className='load-more'>Load more</button>
+        <button className='load-more'onClick={() => getpokemons()}>Load more</button>
     </div>
 
   </div>
